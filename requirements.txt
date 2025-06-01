@@ -1,0 +1,8 @@
+streamlit
+pillow
+opencv-python
+numpy
+matplotlib
+scipy
+pandas
+joblib
