@@ -433,7 +433,7 @@ with tab1:
     st.markdown(
     """
     Unggah gambar sel darah putih atau pilih dari contoh yang tersedia.  
-    <span style='color:blue; font-weight:bold'>Direkomendasikan menggunakan gambar yang tersedia.</span>
+    <span style='color:#0CB2F9; font-weight:bold; font-size:20px'>Direkomendasikan menggunakan gambar yang tersedia.</span>
     """,
     unsafe_allow_html=True
 )
@@ -498,8 +498,9 @@ with tab1:
         
         if gambar_input:
             st.image(gambar_input, caption=f"Asli: {nama_file_gambar}" if nama_file_gambar else "Gambar Asli", use_container_width=True)
-            
-            if st.button("lakukan proses Segmentasi", key="proses_home", use_container_width=True):
+            st.markdown("""<style>div.stButton > button#proses_home {background-color: #28a745;color: white;font-weight: bold;border-radius: 8px;height: 3em;}</style>""", unsafe_allow_html=True)
+            if st.button("Lakukan Proses Segmentasi", key="proses_home", use_container_width=True):
+                st.success("Proses segmentasi dimulai...")
                 pass 
         elif st.session_state.input_mode == "Unggah Gambar" and 'uploader_home' not in st.session_state:
              pass
@@ -545,52 +546,52 @@ with tab1:
                     df_fitur = pd.DataFrame([fitur_diekstrak])
                     hasil_prediksi = prediksi_wbc(fitur_diekstrak)
                 with st.container():
-                    st.markdown("""<div style="background-color: #f0f0f0;border: 2px solid #6A0DAD;padding: 20px;border-radius: 10px;margin-bottom: 20px;">
-                                <h4 style='color:#6A0DAD'>Tahap 1: Gambar Asli</h4>""", unsafe_allow_html=True)
+                    st.markdown("""<div style="background-color: #929299;border: 4px solid #929299;padding: 10px;border-radius: 10px;margin-bottom: 20px;">
+                                <h4 style='color:#FFFFFF;font-weight:bold; font-size:30px'>Gambar Asli</h4>""", unsafe_allow_html=True)
                     st.image(gambar_hasil_segmentasi, caption="Gambar Input", width=500)
                     st.markdown("</div>", unsafe_allow_html=True)
 
                 with st.container():
-                    st.markdown("""<div style="background-color: #f0f0f0;border: 2px solid #6A0DAD;padding: 20px;border-radius: 10px;margin-bottom: 20px;">
-                                <h4 style='color:#6A0DAD'>Tahap 1: Preprocessing</h4>""", unsafe_allow_html=True)
+                    st.markdown("""<div style="background-color: #929299;border: 4px solid #929299;padding: 10px;border-radius: 10px;margin-bottom: 20px;">
+                                <h4 style='color:#FFFFFF;font-weight:bold; font-size:30px'>Tahap Pre-processing</h4>""", unsafe_allow_html=True)
                     col_kiri, col_kanan = st.columns(2)
                     with col_kiri:
-                        st.image(hasil_binary1, caption="Hasil Proses - Binary 1", width=400)
+                        st.image(hasil_binary1, caption="Hasil Proses - Binary 1", use_container_width=True)
                     with col_kanan:
-                        st.image(hasil_binary2, caption="Hasil Proses - Binary 2", width=400)
+                        st.image(hasil_binary2, caption="Hasil Proses - Binary 2", use_container_width=True)
 
                     st.markdown("</div>", unsafe_allow_html=True)
 
                 with st.container():
-                    st.markdown("""<div style="background-color: #f0f0f0;border: 2px solid #6A0DAD;padding: 20px;border-radius: 10px;margin-bottom: 20px;">
-                                <h4 style='color:#6A0DAD'>Tahap 2: Segmentasi Nukleus</h4>""", unsafe_allow_html=True)
+                    st.markdown("""<div style="background-color: #929299;border: 4px solid #929299;padding: 10px;border-radius: 10px;margin-bottom: 20px;">
+                                <h4 style='color:#FFFFFF;font-weight:bold; font-size:30px'>Tahap Segmentasi Nukleus</h4>""", unsafe_allow_html=True)
                     nuc1, nuc2, nuc3 = st.columns(3)
                     with nuc1:
-                        st.image(img_closed, caption="Closing Morfologi", width=300)
+                        st.image(img_closed, caption="Closing Morfologi", use_container_width=True)
                     with nuc2:
-                        st.image(img_size_checked, caption="Pengecekan Ukuran", width=300)
+                        st.image(img_size_checked, caption="Pengecekan Ukuran", use_container_width=True)
                     with nuc3:
-                        st.image(I9, caption="Pengisian Lubang", width=300)
+                        st.image(I9, caption="Pengisian Lubang", use_container_width=True)
 
                     st.markdown("</div>", unsafe_allow_html=True)
 
                 with st.container():
-                    st.markdown("""<div style="background-color: #f0f0f0;border: 2px solid #6A0DAD;padding: 20px;border-radius: 10px;margin-bottom: 20px;">
-                                <h4 style='color:#6A0DAD'>Tahap 3: Segmentasi WBC Akhir</h4>""", unsafe_allow_html=True)
+                    st.markdown("""<div style="background-color: #929299;border: 4px solid #929299;padding: 10px;border-radius: 10px;margin-bottom: 20px;">
+                                <h4 style='color:#FFFFFF;font-weight:bold; font-size:30px'>Tahap Segmentasi WBC</h4>""", unsafe_allow_html=True)
                     wbc1, wbc2, wbc3 = st.columns(3)
                     with wbc1:
-                        st.image(img_convex, caption="Convex Hull", width=300)
+                        st.image(img_convex, caption="Convex Hull", use_container_width=True)
                     with wbc2:
-                        st.image(img_radial, caption="Radial", width=300)
+                        st.image(img_radial, caption="Radial", use_container_width=True)
                     with wbc3:
-                        st.image(final_cytoplasm_mask, caption="Masker Sitoplasma Akhir", width=300)
+                        st.image(final_cytoplasm_mask, caption="Masker Sitoplasma Akhir", use_container_width=True)
 
                     st.markdown("</div>", unsafe_allow_html=True)
 
                 with st.container():
-                    st.markdown("""<div style="background-color: #f0f0f0;border: 2px solid #6A0DAD;padding: 20px;border-radius: 10px;margin-bottom: 20px;">
-                                <h4 style='color:#6A0DAD'>Gambar Akhir/h4>""", unsafe_allow_html=True)
-                    st.image(img_elips, caption="Akhir", width=400)
+                    st.markdown("""<div style="background-color: #929299;border: 4px solid #929299;padding: 10px;border-radius: 10px;margin-bottom: 20px;">
+                                <h4 style='color:#FFFFFF;font-weight:bold; font-size:30px'>Gambar Akhir segmentasi</h4>""", unsafe_allow_html=True)
+                    st.image(img_elips, caption="Akhir", use_container_width=True)
                     st.markdown("</div>", unsafe_allow_html=True)
 
                 st.markdown("<h4 style='color:#6A0DAD'>📊 Fitur yang Diekstraksi</h4>", unsafe_allow_html=True)
@@ -599,7 +600,9 @@ with tab1:
                 st.title("Prediksi WBC dari Fitur Gambar")
                 prediksi = prediksi_wbc(fitur_diekstrak)
 
-                st.markdown(f"### Hasil Prediksi: **{hasil_prediksi}**")
+                st.markdown(f"""<h3>Hasil Prediksi: <span style='color:#4CAF50; font-weight:bold; font-size:28px'>
+                            {hasil_prediksi}</span></h3>""", unsafe_allow_html=True)
+
 
                 st.success("Segmentasi selesai! (menggunakan fungsi placeholder)")
 
@@ -620,11 +623,25 @@ with tab1:
 with tab2:
     st.header("Tentang Aplikasi Ini")
     st.write("Aplikasi ini adalah alat sederhana untuk segmentasi gambar sel darah putih (WBC).")
+    
     st.markdown("---")
-    st.markdown("Anda bisa mengakses kode sumber aplikasi ini di GitHub:")
+
+    st.subheader("Informasi Kelompok")
+    st.markdown("""
+    **Nama Kelompok:** Kelompok 5  
+    **Anggota:**  
+    - Dimas Kurniawan  (23031554067)
+    - Eko hadi Prasetiyo  (23031554121)
+    - Muhammad Hilmi Musyaffa  (23031554128)
+    """)
+    
+    st.markdown("---")
+
+    st.markdown("Anda bisa mengakses kode, dokumen, dan data yang digunakan saat membangun program ini di GitHub:")
     st.markdown(
         '[![GitHub](https://img.shields.io/badge/GitHub-Repository-black?logo=github)](https://github.com/Dhekazxy/Segmentation-WBC)',
         unsafe_allow_html=True
     )
+
 
 
