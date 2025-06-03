@@ -1,5 +1,9 @@
 # Segmentation-WBC
 Repositori ini berisi kode program dan dataset yang digunakan untuk proyek segmentasi nukleus, serta aplikasi interaktif berbasis Streamlit untuk demo segmentasi.
+dikerjakan oleh kelompok 7 matakuliah pengolahan citra digital S1 sains data, dengan anggota sebagai berikut :
+- Dimas Kurniawan 067
+- Eko Hadi Prasetiyo 121
+- Muhammad Hilmi Musyaffa 128
 
 ## Isi Repositori
 - `app.py/` : Kode program untuk aplikasi streamlit
